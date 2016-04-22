@@ -1,0 +1,15 @@
+1. 	Терминальные символы: north, east, south, west, start
+	Нетерминальные символы: S
+
+<S> ::= <expression>
+<expression> ::= <expression> " " <direction> | <direction>
+<direction> ::= "north" | "east" | "south" | "west" | "start"
+
+
+2.
+
+<expression> ::= "if" <expression> "else" | <expression> "if" "else"
+
+3.
+
+<expression> ::= 
