@@ -1,15 +1,87 @@
-1. 	Терминальные символы: north, east, south, west, start
-	Нетерминальные символы: S
-
-<S> ::= <expression>
-<expression> ::= <expression> " " <direction> | <direction>
+1.
+<S> ::= <S> " " <direction> | <direction>
 <direction> ::= "north" | "east" | "south" | "west" | "start"
 
 
 2.
+а)
+<S> ::= "if" <expression1> "then" <S> | "if" <expression1> "then" <S> "else" <S> | <expression2>
 
-<expression> ::= "if" <expression> "else" | <expression> "if" "else"
+// if <expression1> then if <expression1> then <expression2> имеет 2 дерева разбора 
+
+б)
+<S> ::= "if" <expression1> "then" <S> | "if" <expression1> "then" <S2> "else" <S> | <expression2>  
+<S2> ::= "if" <expression1> "then" <S2> "else" <S2> | <expression2>  
 
 3.
+<S> ::= <S> "I" | <S> "V" | <S> "X" | <S> "L" | <S> "C" | <S> "D" | <S> "M" |
+  <S> "IV" | <S> "IX" |
+  <S> "XL" | <S> "XC" |
+  <S> "CD" | <S> "CM"
 
-<expression> ::= 
+Определение:
+<S> ::= <S> "IV"  <S> = <S> + 4
+<S> ::= <S> "IX"  <S> = <S> + 9
+
+<S> ::= <S> "XL"  <S> = <S> + 40
+<S> ::= <S> "XC"  <S> = <S> + 90
+
+<S> ::= <S> "CD"  <S> = <S> + 400
+<S> ::= <S> "CM"  <S> = <S> + 900
+
+<S> ::= <S> "I"   <S> = <S> + 1
+<S> ::= <S> "V"   <S> = <S> + 5
+<S> ::= <S> "X"   <S> = <S> + 10
+<S> ::= <S> "L"   <S> = <S> + 50
+<S> ::= <S> "C"   <S> = <S> + 100
+<S> ::= <S> "D"   <S> = <S> + 500
+<S> ::= <S> "M"   <S> = <S> + 1000 
+
+4.
+
+а)
+
+<S> ::= <S> "^(" <S> ")" | <expression>
+
+б)
+
+<S> ::= <S> "." <S> | <S><S> | <number> 
+
+в)
+
+//Если S - число:
+<S> ::= "s " <S>
+<S> ::= "c " <S>
+
+//Если S - выражение:
+<S> ::= "s (" <S> ")"
+<S> ::= "c (" <S> ")"
+
+г)
+
+//<S> - выражение или число
+<S> ::= <S> ">" <S>
+<S> ::= <S> "<" <S>
+<S> ::= <S> "=" <S>
+<S> ::= <S1>
+<S> ::= <S2>
+
+д)
+
+<S> ::= "!" <S> | <S> "&" <S> | <S> "|" <S> | <expression>
+
+Определния:
+
+в)
+
+<S> ::= "s " <S>	<S> = sin(<S>)
+<S> ::= "c " <S>	<S> = cos(<S>)
+
+<S> ::= "s (" <S> ")"	<S> = sin(<S>)
+<S> ::= "c (" <S> ")"	<S> = cos(<S>)
+
+д)
+
+<S> ::= "!" <S>		<S> = !(<S>)
+<S> ::= <S> "&" <S>	<S> = (<S>) & (<S>)
+<S> ::= <S> "|" <S>	<S> = (<S>) | (<S>)
